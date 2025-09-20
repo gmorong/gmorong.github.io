@@ -1,1 +1,0 @@
-# gmorong.github.io
