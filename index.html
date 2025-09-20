@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дмитрий Камков - Fullstack Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2F81F7 0%, #1e3c72 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+
+            100% {
+                transform: translateX(-100px) translateY(-100px);
+            }
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin: 0 auto 20px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: #2F81F7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .name {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .title {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: white;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+
+        .contact-item:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .content {
+            padding: 50px 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #2F81F7;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 4px;
+            background: #2F81F7;
+            border-radius: 2px;
+        }
+
+        .education-item,
+        .project-item {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 4px solid #2F81F7;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .education-item:hover,
+        .project-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(47, 129, 247, 0.1);
+        }
+
+        .education-title,
+        .project-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2F81F7;
+            margin-bottom: 8px;
+        }
+
+        .education-subtitle,
+        .project-subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .education-date {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .project-features {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .project-features li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .project-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #2F81F7;
+            font-weight: bold;
+        }
+
+        .tech-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .tech-tag {
+            background: #2F81F7;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            color: #2F81F7;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border: 2px solid #2F81F7;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            background: #2F81F7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h4 {
+            color: #2F81F7;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .skill-list {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .experience-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #2F81F7;
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 40px;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-left: 20px;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 30px;
+            width: 12px;
+            height: 12px;
+            background: #2F81F7;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .footer {
+            background: #2F81F7;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                border-radius: 15px;
+            }
+
+            .header {
+                padding: 40px 20px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .name {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="./photo.jpg" alt="Дмитрий Камков" class="profile-img">
+            <h1 class="name">Дмитрий Камков</h1>
+            <p class="title">Fullstack Developer</p>
+            <div class="contact-info">
+                <a href="mailto:dmitry.kamkov@gmail.com" class="contact-item">
+                    <span>✉</span> dmitry.kamkov@gmail.com
+                </a>
+                <a href="https://t.me/dkamkov" class="contact-item">
+                    <span>💬</span> @dkamkov
+                </a>
+                <a href="https://linkedin.com/in/dmitry-kamkov-288a52385" class="contact-item">
+                    <span>💼</span> LinkedIn
+                </a>
+                <a href="https://github.com/dkamkov" class="contact-item">
+                    <span>🔗</span> GitHub
+                </a>
+            </div>
+        </header>
+
+        <main class="content">
+            <section class="section">
+                <h2 class="section-title">Образование</h2>
+                <div class="education-item">
+                    <h3 class="education-title">Магистратура - Веб-технологии</h3>
+                    <p class="education-subtitle">Университет ИТМО (09.04.04)</p>
+                    <p class="education-date">2025 - настоящее время | Санкт-Петербург</p>
+                    <p>Изучение современных веб-технологий, фреймворков и архитектурных решений для создания
+                        высоконагруженных веб-приложений.</p>
+                </div>
+                <div class="education-item">
+                    <h3 class="education-title">Бакалавр - Информатика и вычислительная техника</h3>
+                    <p class="education-subtitle">УрТИСИ СибГУТИ (09.03.01)</p>
+                    <p class="education-date">2021 - 2025 | Екатеринбург</p>
+                    <p>Защита диплома: <strong>25.06.2025</strong>. Дипломный проект - кросс-платформенный таск-менеджер
+                        PoinTo с real-time синхронизацией.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Опыт работы</h2>
+                <div class="experience-timeline">
+                    <div class="experience-item">
+                        <h3 class="education-title">Fullstack Developer</h3>
+                        <p class="education-subtitle">Корпоративная разработка</p>
+                        <p class="education-date">Июнь 2025 - Сентябрь 2025 (договор ГПХ)</p>
+                        <p class="project-description">Разработка корпоративного приложения с нуля на Django с
+                            интеграцией к 1С через собственные HTTP-сервисы.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">1С</span>
+                            <span class="tech-tag">HTTP API</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Ключевые проекты</h2>
+
+                <div class="project-item">
+                    <h3 class="project-title">🎓 PoinTo - Кросс-платформенный таск-менеджер</h3>
+                    <p class="project-subtitle">Дипломный проект | Flutter | Версия 1.2.5</p>
+                    <p class="project-description">Умное приложение для управления задачами с командной работой и
+                        real-time синхронизацией. Поддержка iOS и Android с облачной синхронизацией через Supabase.</p>
+                    <ul class="project-features">
+                        <li>Real-time обновления между пользователями</li>
+                        <li>Email подтверждение и безопасная авторизация</li>
+                        <li>Совместная работа над проектами</li>
+                        <li>Назначение задач участникам команды</li>
+                        <li>Многоязычность (EN/RU)</li>
+                    </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Flutter</span>
+                        <span class="tech-tag">Dart</span>
+                        <span class="tech-tag">Supabase</span>
+                        <span class="tech-tag">Riverpod</span>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <h3 class="project-title">👟 Sneaker Shop - Система управления складом</h3>
+                    <p class="project-subtitle">React + Node.js + PostgreSQL</p>
+                    <p class="project-description">Полноценное клиент-серверное приложение для управления складскими
+                        операциями магазина кроссовок с системой ролей и JWT аутентификацией.</p>
+                    <ul class="project-features">
+                        <li>Система ролей (Admin/Worker/User)</li>
+                        <li>JWT аутентификация и авторизация</li>
+                        <li>Управление товарами и складскими остатками</li>
+                        <li>Адаптивный интерфейс с Bootstrap</li>
+                    </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">MobX</span>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <h3 class="project-title">🏠 ФИАС Парсер с автообновлениями</h3>
+                    <p class="project-subtitle">Python | PostgreSQL</p>
+                    <p class="project-description">Система парсинга и автообновления данных Федеральной Адресной Системы
+                        с корректной обработкой иерархии муниципальных образований. База данных активно используется в
+                        Django приложении, разработанном на предыдущем месте работы.</p>
+                    <ul class="project-features">
+                        <li>Парсинг 40+ млн адресов России</li>
+                        <li>Автоматические ежедневные обновления</li>
+                        <li>Интеграция с Django приложением</li>
+                        <li>Резервное копирование и восстановление</li>
+                        <li>Оптимизированная структура БД</li>
+                    </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">XML</span>
+                        <span class="tech-tag">Cron</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Технические навыки</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Frontend</h4>
+                        <div class="skill-list">
+                            React, JavaScript/ES6+<br>
+                            HTML5, CSS3, Bootstrap<br>
+                            Flutter, Dart
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Backend</h4>
+                        <div class="skill-list">
+                            Node.js, Express<br>
+                            Django, Python<br>
+                            RESTful API, JWT
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Mobile</h4>
+                        <div class="skill-list">
+                            Flutter (iOS/Android)<br>
+                            Kotlin, Android Studio<br>
+                            Cross-platform development
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Базы данных</h4>
+                        <div class="skill-list">
+                            PostgreSQL, Room<br>
+                            Supabase, Firebase<br>
+                            Database design
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Инструменты</h4>
+                        <div class="skill-list">
+                            Git, GitHub<br>
+                            VS Code, Android Studio<br>
+                            Docker, Linux
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Интеграции</h4>
+                        <div class="skill-list">
+                            1С HTTP сервисы<br>
+                            Weather API<br>
+                            Payment systems
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Личные качества</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Бывший спортсмен</h4>
+                        <div class="skill-list">
+                            Профессиональный фигурист<br>
+                            Опыт выступлений<br>
+                            Командная работа
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Дисциплинирован</h4>
+                        <div class="skill-list">
+                            Соблюдение дедлайнов<br>
+                            Систематический подход<br>
+                            Самоорганизация
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Внимателен к деталям</h4>
+                        <div class="skill-list">
+                            Качественный код<br>
+                            Тщательное тестирование<br>
+                            Code review
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Открыт для нового</h4>
+                        <div class="skill-list">
+                            Быстрое обучение<br>
+                            Новые технологии<br>
+                            Адаптивность
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Дмитрий Камков • Fullstack Developer • 2025</p>
+            <p>Открыт к новым возможностям и интересным проектам</p>
+        </footer>
+    </div>
+</body>
+
+</html>
