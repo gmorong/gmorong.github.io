@@ -49,7 +49,7 @@
         }
 
         @keyframes float {
-            0 {
+            0% {
                 transform: translateX(0) translateY(0);
             }
 
@@ -220,6 +220,90 @@
             font-weight: 500;
         }
 
+        /* Стили для выпадающего портфолио (Accordion) */
+        .portfolio-accordion {
+            margin-bottom: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+
+        .accordion-btn {
+            width: 100%;
+            padding: 18px 25px;
+            background: #f8f9fa;
+            border: none;
+            outline: none;
+            text-align: left;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .accordion-btn:hover {
+            background: #edf2f7;
+            color: #2F81F7;
+        }
+
+        .accordion-btn::after {
+            content: '▼';
+            font-size: 0.8em;
+            color: #a0aec0;
+            transition: transform 0.3s;
+        }
+
+        .accordion-btn.active::after {
+            transform: rotate(180deg);
+            color: #2F81F7;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: white;
+        }
+
+        .portfolio-list {
+            padding: 20px 25px;
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .portfolio-link-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            font-size: 0.95em;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .portfolio-link-item:hover {
+            background: #e2e8f0;
+            color: #2F81F7;
+            border-color: #cbd5e1;
+            transform: translateY(-1px);
+        }
+
+        .drive-icon {
+            font-size: 1.2em;
+        }
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -303,7 +387,7 @@
 
         .personal-quality-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         .quality-icon {
@@ -339,6 +423,11 @@
 
             .skills-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .portfolio-list {
+                grid-template-columns: 1fr;
+                padding: 15px;
             }
 
             .name {
@@ -477,6 +566,69 @@
             </section>
 
             <section class="section">
+                <h2 class="section-title">📂 Портфолио и документы</h2>
+
+                <div class="portfolio-accordion">
+                    <button class="accordion-btn" onclick="toggleAccordion(this)">🎓 Учеба и дипломы</button>
+                    <div class="accordion-content">
+                        <div class="portfolio-list">
+                            <a href="https://drive.google.com/file/d/1-bdw7PgXcNQbnT2raJ9D7JptfMW-3kiF/view?usp=sharing" target="_blank" class="portfolio-link-item">
+                                <span class="drive-icon">📄</span> Диплом бакалавра
+                            </a>
+                            <a href="https://drive.google.com/file/d/1nt5Df7KlGOKRmj4RSiq8zdQMwGj33AU4/view?usp=sharing" target="_blank" class="portfolio-link-item">
+                                <span class="drive-icon">📊</span> Приложение к диплому
+                            </a>
+                            <a href="https://drive.google.com/file/d/1nyWQjv7hTYnI7CHE5R7720AGsMQKfhjV/view?usp=sharing" target="_blank" class="portfolio-link-item">
+                                <span class="drive-icon">📜</span> Благодарность директора
+                            </a>
+                            <a href="https://drive.google.com/file/d/1QhXHCDSX9Dq3ps3ZChHWs5zeo3OiISyL/view?usp=sharing" target="_blank" class="portfolio-link-item">
+                                <span class="drive-icon">🤝</span> Благодарность за вклад
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-accordion">
+                    <button class="accordion-btn" onclick="toggleAccordion(this)">🏆 Хакатоны и курсы</button>
+                    <div class="accordion-content">
+                        <div class="portfolio-list">
+                            <a href="https://drive.google.com/file/d/1dWfZt_I4sCf8-sLKwuSN_TOQlzFFIPLa/view?usp=sharing" target="_blank" class="portfolio-link-item">
+                                <span class="drive-icon">🥇</span> MirITeam.Hack — 3 место
+                            </a>
+                            <a href="https://drive.google.com/file/d/1D12ooDiAdtBdj7G3wZtcsTbYXgr9EYgj/view?usp=sharing" target="_blank" class="portfolio-link-item">
+                                <span class="drive-icon">🏆</span> Хакатон Связи — 1 место
+                            </a>
+                            <a href="https://drive.google.com/file/d/1oCGxrGPXxPhGJ7GhJ6QXQ5XLIGpYSU2U/view?usp=sharing" target="_blank" class="portfolio-link-item">
+                                <span class="drive-icon">💻</span> Сертификат Stepik (Интерактивный SQL)
+                            </a>
+                            <a href="https://drive.google.com/file/d/1-GCvfulq8UnJ40_KH8KQyKFUqQU8u3Or/view?usp=sharing" target="_blank" class="portfolio-link-item">
+                                <span class="drive-icon">❄️</span> Зимняя школа шефов 2023
+                            </a>
+                            <a href="https://drive.google.com/file/d/1gBAlZVebSrip5N7bINDkZoiYkmt8gS_1/view?usp=sharing" target="_blank" class="portfolio-link-item">
+                                <span class="drive-icon">🌨️</span> Зимняя школа шефов 2024
+                            </a>
+                            <a href="https://drive.google.com/file/d/1IaVD1VfAR_KJMCWw5WpGEfXcfX_injbU/view?usp=sharing" target="_blank" class="portfolio-link-item">
+                                <span class="drive-icon">🧠</span> Квиз от К Телеком
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-accordion">
+                    <button class="accordion-btn" onclick="toggleAccordion(this)">⛸️ Спортивные достижения</button>
+                    <div class="accordion-content">
+                        <div class="portfolio-list">
+                            <a href="https://drive.google.com/file/d/1ZtgiiKP3UTIL3wUYc2eu4gcRoY0kjaAh/view?usp=sharing" target="_blank" class="portfolio-link-item">
+                                <span class="drive-icon">👑</span> Лучший спортсмен сезона
+                            </a>
+                            <a href="https://drive.google.com/file/d/143qEa9BFM9964STplhSdeAAv0Bp0vmXk/view?usp=sharing" target="_blank" class="portfolio-link-item">
+                                <span class="drive-icon">⛸️</span> Соревнования им. Ромаровского
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
                 <h2 class="section-title">🛠️ Технические навыки</h2>
                 <div class="skills-grid">
                     <div class="skill-category">
@@ -558,6 +710,18 @@
             <p>Открыт к новым возможностям и интересным проектам</p>
         </footer>
     </div>
+
+    <script>
+        function toggleAccordion(btn) {
+            btn.classList.toggle("active");
+            var content = btn.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+    </script>
 </body>
 
 </html>
