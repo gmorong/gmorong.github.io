@@ -49,7 +49,7 @@
         }
 
         @keyframes float {
-            0% {
+            0 {
                 transform: translateX(0) translateY(0);
             }
 
@@ -106,7 +106,7 @@
             text-decoration: none;
             color: white;
             opacity: 0.9;
-            transition: opacity 0.3s;
+            transition: opacity 0.3s, transform 0.3s;
         }
 
         .contact-item:hover {
@@ -220,27 +220,6 @@
             font-weight: 500;
         }
 
-        .project-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .project-link {
-            color: #2F81F7;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 16px;
-            border: 2px solid #2F81F7;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-
-        .project-link:hover {
-            background: #2F81F7;
-            color: white;
-            transform: translateY(-2px);
-        }
-
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -306,6 +285,31 @@
             border: 3px solid white;
         }
 
+        .personal-quality-card {
+            background: #f8f9fa;
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 600;
+            color: #333;
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 1px solid #eee;
+        }
+
+        .personal-quality-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .quality-icon {
+            font-size: 2em;
+        }
+
         .footer {
             background: #2F81F7;
             color: white;
@@ -352,7 +356,7 @@
             <p class="title">Fullstack Developer</p>
             <div class="contact-info">
                 <a href="mailto:dmitry.kamkov@gmail.com" class="contact-item">
-                    <span>✉</span> dmitry.kamkov@gmail.com
+                    <span>✉️</span> dmitry.kamkov@gmail.com
                 </a>
                 <a href="https://t.me/dkamkov" class="contact-item">
                     <span>💬</span> @dkamkov
@@ -368,7 +372,7 @@
 
         <main class="content">
             <section class="section">
-                <h2 class="section-title">Образование</h2>
+                <h2 class="section-title">🎓 Образование</h2>
                 <div class="education-item">
                     <h3 class="education-title">Магистратура - Веб-технологии</h3>
                     <p class="education-subtitle">Университет ИТМО (09.04.04)</p>
@@ -386,16 +390,16 @@
             </section>
 
             <section class="section">
-                <h2 class="section-title">Опыт работы</h2>
+                <h2 class="section-title">💼 Опыт работы</h2>
                 <div class="experience-timeline">
                     <div class="experience-item">
                         <h3 class="education-title">Fullstack Developer</h3>
                         <p class="education-subtitle">Корпоративная разработка</p>
-                        <p class="education-date">Июнь 2025 - Сентябрь 2025 (сейчас: договор ГПХ до ноября + продление)
-                        </p>
+                        <p class="education-date">Июнь 2025 — по сей день (Договор ГПХ)</p>
                         <p class="project-description">Разработка корпоративного приложения с нуля на Django с
-                            интеграцией к 1С через собственные HTTP-сервисы.</p>
+                            интеграцией к 1С через собственные HTTP-сервисы и созданием интерактивного интерфейса.</p>
                         <div class="tech-tags">
+                            <span class="tech-tag">Vue.js</span>
                             <span class="tech-tag">Django</span>
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">1С</span>
@@ -406,10 +410,10 @@
             </section>
 
             <section class="section">
-                <h2 class="section-title">Ключевые проекты</h2>
+                <h2 class="section-title">🚀 Ключевые проекты</h2>
 
                 <div class="project-item">
-                    <h3 class="project-title">🎓 PoinTo - Кросс-платформенный таск-менеджер</h3>
+                    <h3 class="project-title">🎯 PoinTo - Кросс-платформенный таск-менеджер</h3>
                     <p class="project-subtitle">Дипломный проект | Flutter | Версия 1.2.5</p>
                     <p class="project-description">Умное приложение для управления задачами с командной работой и
                         real-time синхронизацией. Поддержка iOS и Android с облачной синхронизацией через Supabase.</p>
@@ -472,12 +476,12 @@
             </section>
 
             <section class="section">
-                <h2 class="section-title">Технические навыки</h2>
+                <h2 class="section-title">🛠️ Технические навыки</h2>
                 <div class="skills-grid">
                     <div class="skill-category">
                         <h4>Frontend</h4>
                         <div class="skill-list">
-                            React, JavaScript/ES6+<br>
+                            Vue.js, React, JavaScript/ES6+<br>
                             HTML5, CSS3, Bootstrap<br>
                             Flutter, Dart
                         </div>
@@ -526,43 +530,30 @@
             </section>
 
             <section class="section">
-                <h2 class="section-title">Личные качества</h2>
+                <h2 class="section-title">🧠 Личные качества</h2>
                 <div class="skills-grid">
-                    <div class="skill-category">
-                        <h4>Бывший спортсмен</h4>
-                        <div class="skill-list">
-                            Профессиональный фигурист<br>
-                            Командная работа
-                        </div>
+                    <div class="personal-quality-card">
+                        <span class="quality-icon">⛸️</span>
+                        <span>Бывший спортсмен</span>
                     </div>
-                    <div class="skill-category">
-                        <h4>Дисциплинирован</h4>
-                        <div class="skill-list">
-                            Систематический подход<br>
-                            Самоорганизация
-                        </div>
+                    <div class="personal-quality-card">
+                        <span class="quality-icon">📈</span>
+                        <span>Дисциплинирован</span>
                     </div>
-                    <div class="skill-category">
-                        <h4>Внимателен к деталям</h4>
-                        <div class="skill-list">
-                            Качественный код<br>
-                            Code review
-                        </div>
+                    <div class="personal-quality-card">
+                        <span class="quality-icon">🔍</span>
+                        <span>Внимателен к деталям</span>
                     </div>
-                    <div class="skill-category">
-                        <h4>Открыт для нового</h4>
-                        <div class="skill-list">
-                            Быстрое обучение<br>
-                            Новые технологии<br>
-                            Адаптивность
-                        </div>
+                    <div class="personal-quality-card">
+                        <span class="quality-icon">💡</span>
+                        <span>Открыт для нового</span>
                     </div>
                 </div>
             </section>
         </main>
 
         <footer class="footer">
-            <p>Дмитрий Камков • Fullstack Developer • 2025</p>
+            <p>Дмитрий Камков • Fullstack Developer • 2026</p>
             <p>Открыт к новым возможностям и интересным проектам</p>
         </footer>
     </div>
